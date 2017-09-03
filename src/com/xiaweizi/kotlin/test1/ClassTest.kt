@@ -1,5 +1,5 @@
 package com.xiaweizi.kotlin.test1
 
 fun main(args: Array<String>) {
-    println("sjs")
+    println("hello world")
 }
