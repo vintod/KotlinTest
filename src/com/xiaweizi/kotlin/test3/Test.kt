@@ -8,4 +8,9 @@ package com.xiaweizi.kotlin.test3
  * description:
  */
 fun main(args: Array<String>) {
+
+
+    for (arg in args) {
+
+    }
 }
