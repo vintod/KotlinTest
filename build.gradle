@@ -1,6 +1,9 @@
 group 'xiaweixi'
 version '1.0-SNAPSHOT'
 
+apply plugin: 'application'
+mainClassName = "com.xiaweizi.kotlin.test3.CalculaterKt"
+
 buildscript {
     ext.kotlin_version = '1.1.4-2'
 
