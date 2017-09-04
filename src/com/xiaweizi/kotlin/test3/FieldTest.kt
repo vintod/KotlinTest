@@ -5,7 +5,7 @@ package com.xiaweizi.kotlin.test3
  * data:        2017/9/4
  * author:      xiaweizi
  * e-mail:      1012126908@qq.com
- * description:
+ * description: 成员变量和成员方法
  */
 class Student(var age: Int, name: String) {
     // 构造方法中参数 var 修饰则代表是成员变量
