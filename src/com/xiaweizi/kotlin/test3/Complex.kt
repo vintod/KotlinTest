@@ -32,7 +32,7 @@ class Complex(var first: Int, var second: Int) {
 }
 
 class Book(var value: Int) {
-    infix fun eq(aInt: Int): Boolean = value == aInt
+    infix fun eq(aInt: Int): Boolean = value == aInt // 中缀表达式
 }
 
 
