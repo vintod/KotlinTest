@@ -23,4 +23,14 @@ fun main(args: Array<String>) {
         print("$j,")
     }
 
+
+    var aInt: Int = 10
+    var aLong: Long = aInt.toLong()
+    var bInt: Int = aLong.toInt()
+
+    var aString: String = "abcd"
+//    var slice = aString.slice(1..20) // 下标越界
+//    println(slice)
+    var aNum: Number = 20
+    println(aNum)
 }
