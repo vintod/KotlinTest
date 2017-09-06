@@ -33,3 +33,6 @@ class Eee: Student(), Aaaaa, Bbbb{
     }
 
 }
+
+val sum = {a: Int, b: Int -> a + b}
+
