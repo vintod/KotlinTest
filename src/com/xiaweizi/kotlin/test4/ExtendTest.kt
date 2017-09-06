@@ -32,6 +32,11 @@ class Eee: Student(), Aaaaa, Bbbb{
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+
+}
+
+fun main(args: Array<String>) {
+    val a = 2.0
 }
 
 val sum = {a: Int, b: Int -> a + b}

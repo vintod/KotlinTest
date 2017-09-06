@@ -7,8 +7,17 @@ package com.xiaweizi.kotlin.test4;
  * e-mail:      1012126908@qq.com
  * description:
  */
-public class JavaTest {
-    int sum(int a, int b) {
-        return a + b;
+public class JavaTest implements A, B{
+    public void fun() {
+
     }
+
+}
+
+interface A {
+    void fun();
+}
+
+interface B {
+    void fun();
 }
