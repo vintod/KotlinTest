@@ -10,6 +10,7 @@ package com.xiaweizi.kotlin.test4
 
 class OverLoadTest {
 //    fun a(anInt: Int = 0) = anInt
+    @JvmOverloads
     fun a(anInt: Int = 0, string: String="") = 1
 //    fun a() = 1
 

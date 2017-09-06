@@ -9,5 +9,6 @@ package com.xiaweizi.kotlin.test4;
  */
 public class JavaTest{
     public static void main(String[] args) {
+        OverLoadTest test = new OverLoadTest();
     }
 }
