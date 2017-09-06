@@ -7,17 +7,7 @@ package com.xiaweizi.kotlin.test4;
  * e-mail:      1012126908@qq.com
  * description:
  */
-public class JavaTest implements A, B{
-    public void fun() {
-
+public class JavaTest{
+    public static void main(String[] args) {
     }
-
-}
-
-interface A {
-    void fun();
-}
-
-interface B {
-    void fun();
 }
