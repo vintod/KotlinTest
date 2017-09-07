@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee806287-36ac-4c43-91eb-adf8a12a4c81" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/xiaweizi/kotlin/test4/DelegatesTest.kt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/xiaweizi/kotlin/test4/JavaBeanTest.kt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaweizi/kotlin/test4/ExtentdTest.kt" afterPath="$PROJECT_DIR$/src/com/xiaweizi/kotlin/test4/ExtentdTest.kt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,11 +16,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DelegatesTest.kt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DelegatesTest.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/xiaweizi/kotlin/test4/DelegatesTest.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+            <state relative-caret-position="264">
+              <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JavaBeanTest.kt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/xiaweizi/kotlin/test4/JavaBeanTest.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="293">
+              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="26" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -92,6 +100,7 @@
         <option value="$PROJECT_DIR$/src/com/xiaweizi/kotlin/test4/JavaTest.java" />
         <option value="$PROJECT_DIR$/src/com/xiaweizi/kotlin/test4/ExtentdTest.kt" />
         <option value="$PROJECT_DIR$/src/com/xiaweizi/kotlin/test4/DelegatesTest.kt" />
+        <option value="$PROJECT_DIR$/src/com/xiaweizi/kotlin/test4/JavaBeanTest.kt" />
       </list>
     </option>
   </component>
@@ -220,20 +229,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Kotlin.com.xiaweizi.kotlin.test4.DelegatesTestKt">
-    <configuration default="false" name="com.xiaweizi.kotlin.test4.ManagerTestKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="com.xiaweizi.kotlin.test4.ManagerTestKt" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="KotlinTest" />
-      <envs />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Kotlin.com.xiaweizi.kotlin.test4.JavaBeanTestKt">
     <configuration default="false" name="com.xiaweizi.kotlin.test4.ObjectTestKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="com.xiaweizi.kotlin.test4.ObjectTestKt" />
@@ -276,6 +272,19 @@
     <configuration default="false" name="com.xiaweizi.kotlin.test4.DelegatesTestKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="com.xiaweizi.kotlin.test4.DelegatesTestKt" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="KotlinTest" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="com.xiaweizi.kotlin.test4.JavaBeanTestKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="com.xiaweizi.kotlin.test4.JavaBeanTestKt" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
@@ -500,19 +509,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.ManagerTestKt" />
-      <item index="1" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.ObjectTestKt" />
-      <item index="2" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.StaticMehtodTestKt" />
-      <item index="3" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.ExtentdTestKt" />
-      <item index="4" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.DelegatesTestKt" />
+      <item index="0" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.ObjectTestKt" />
+      <item index="1" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.StaticMehtodTestKt" />
+      <item index="2" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.ExtentdTestKt" />
+      <item index="3" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.DelegatesTestKt" />
+      <item index="4" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.JavaBeanTestKt" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.DelegatesTestKt" />
-        <item index="1" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.ExtentdTestKt" />
-        <item index="2" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.StaticMehtodTestKt" />
-        <item index="3" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.ObjectTestKt" />
-        <item index="4" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.ManagerTestKt" />
+        <item index="0" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.JavaBeanTestKt" />
+        <item index="1" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.DelegatesTestKt" />
+        <item index="2" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.ExtentdTestKt" />
+        <item index="3" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.StaticMehtodTestKt" />
+        <item index="4" class="java.lang.String" itemvalue="Kotlin.com.xiaweizi.kotlin.test4.ObjectTestKt" />
       </list>
     </recent_temporary>
   </component>
@@ -593,7 +602,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -602,13 +611,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$KOTLIN_BUNDLED$/lib/kotlin-stdlib-sources.jar!/kotlin/Primitives.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="535" column="24" lean-forward="false" selection-start-line="535" selection-start-column="24" selection-end-line="535" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/xiaweizi/kotlin/test2/RangeTest.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-20">
@@ -939,8 +941,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/xiaweizi/kotlin/test4/DelegatesTest.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+        <state relative-caret-position="264">
+          <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/xiaweizi/kotlin/test4/JavaBeanTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="26" selection-end-column="22" />
           <folding />
         </state>
       </provider>
