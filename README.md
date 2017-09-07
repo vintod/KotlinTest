@@ -387,3 +387,326 @@
     hello(string = "aaa")
 
 ## 面向对象
+
+#### 1. 继承
+
+**继承语法要点：**
+
+- 父类需要`open`才可以被继承
+- 父类方法、属性需要`open`才可以被覆写
+- 接口、接口方法、抽象类默认为`open`
+- 覆写父类(接口)成员需要`override`关键字
+
+**语法要点：**
+
+- `class A: B(), C, D`
+- 继承类时实际上调用了父类的构造方法
+- 类只能单继承，接口可以多实现
+
+**接口代理：**
+
+一个类可以直接将自己的任务委托给接口的方法实现，举个例子：
+
+    interface Drive{
+        fun drive()
+    }
+    
+    interface Sing{
+        fun sing()
+    }
+    
+    class CarDrive: Drive{
+        override fun drive() {
+            println("我会开车呦")
+        }
+    }
+    
+    class LoveSing: Sing{
+        override fun sing() {
+            println("我会唱歌呦")
+        }
+    }
+    
+    class Manager(drive: Drive, sing: Sing): Drive by drive, Sing by sing
+    
+    fun main(args: Array<String>) {
+        val carDrive = CarDrive()
+        val loveSing = LoveSing()
+        val manager = Manager(carDrive, loveSing)
+        manager.drive()
+        manager.sing()
+    }
+
+这样，`manager`不用做任何事情，完全交付给接口实现.
+
+**接口方法冲突：**
+
+接口方法可以有默认实现，通过`super<父类名>`.[方法名]([参数列表])
+
+    interface A{
+        fun a() = 0
+    }
+    
+    interface B{
+        fun a() = 1
+    }
+    
+    interface C{
+        fun a() = 2
+    }
+    
+    class D(var aInt: Int): A,B,C{
+        override fun a(): Int {
+            return when(aInt){
+                in 1..10 ->{
+                    super<A>.a()
+                }
+                in 11..100 ->{
+                     super<B>.a()
+                 }
+                else -> {
+                    println("dd")
+                    super<C>.a()
+                }
+            }
+        }
+    }
+
+#### 2. 类及成员的可见性
+
+跟`java`类似，`private、protected、public`，其中`internal`代表的是模块内可见
+
+#### 3. `Object`
+
+相当于`Java`中的单例模式，有以下特点
+
+- 只有一个实例的类
+- 不能自定义构造方法
+- 可以实现接口、继承父类
+- 本质上就是单例模式最基本的实现
+
+        interface getDataSuccess{
+            fun success()
+        }
+        
+        abstract class getDataField{
+            abstract fun failed()
+        }
+        
+        object NetUtil: getDataField(), getDataSuccess{
+            override fun success() {
+                println("success")
+            }
+        
+            override fun failed() {
+                println("failed")
+            }
+        
+            val state: Int = 0
+            fun getData(): String = "请求成功"
+        }
+
+#### 3. 伴生对象和静态成员
+
+相当于`java`中的静态方法
+
+- 每个类可以对应一个伴生对象
+- 伴生对象的成员全局独一份
+- 如果`java`中想直接调用`kotlin`中的静态方法或者静态变量，可以考虑使用`JvmField JvmStatic`.
+
+        open class Util private constructor(var anInt: Int) {
+            companion object {
+                @JvmStatic
+                fun plus(first: Int, second: Int) = first + second
+        
+                fun copy(util: Util) = Util(util.anInt)
+                @JvmField
+                val tag = "tag"
+            }
+        }
+
+#### 4. 方法的重载
+
+通过给方法的参数配置默认值，即可实现方法的重载，按理说，一切可以拥有默认值的方法重载才是合理的方法重载。
+
+名称形同、参数不同，跟返回值没有关系
+
+    class OverLoadTest {
+        @JvmOverLoads
+        fun a(anInt: Int = 0, string: String="") = 1
+    }
+    
+    val test = OverLoadTest()
+    test.a(1, "")
+    test.a()
+    test.a(anInt = 2)
+    test.a(string = "")
+
+使用`JvmOverLoads`是为了方便`Java`中调用方法的重载.
+
+#### 5. 扩展方法
+
+`kotlin`中的扩展方法，我认为相当于`java`中的代理模式，拿到被代理的对象，然后进行一系列的操作。
+
+    fun String.add(anInt: Int): String {
+        var sb = StringBuilder()
+        for (i in 0 until anInt) {
+            sb.append(this)
+        }
+        return sb.toString()
+    }
+    
+    operator fun String.times(anInt: Int): String {
+        var sb = StringBuilder()
+        for (i in 0 until anInt) {
+            sb.append(this)
+        }
+        return sb.toString()
+    }
+    
+    // 使用
+    var string = "xiaweizi"
+    println(string.add(5))
+    println(string * (3))
+
+#### 6. 属性代理
+
+类似之前说的`var anInt: Int by lazy{2}`,懒赋值就是使用的属性代理，来看个例子：
+
+    fun main(args: Array<String>) {
+        val a: Int by DelegatesTest()
+        println(a)
+    
+        var b: Int by DelegatesTest()
+        b = 3
+        println(b)
+    }
+    
+    class DelegatesTest {
+        private var anInt: Int? = null
+        operator fun getValue(thisRef: Any?, property: KProperty<*>): Int {
+            println("getValue")
+            return anInt?:0
+        }
+    
+        operator fun setValue(thisRef: Any?, property: KProperty<*>, value: Int): Unit {
+            println("setValue")
+            this.anInt = value
+        }
+    }
+
+> `val` 对应 `getValue`，`var`对应`getValue和setValue`方法，这个时候声明的属性就全权交付给`DelegatesTest`类中的`anInt`代理，当`anInt`为空的时候返回`0`，否则返回`anInt`.
+
+#### 7. JavaBean
+
+使用`data`修饰类，类似`java`中的`javaBean`,默认实现了`set get toString`等方法，并拥有`componentN`方法.
+
+不过有个缺点就是，无法被继承，没有无参构造函数，可以通过安装`allOpen`和`noArg`插件解决这个问题.
+
+    data class UserBean(var name: String, var age: Int)
+    
+    val userBean: UserBean = UserBean("小芳", 23)
+    println(userBean.name)
+    println(userBean.toString())
+
+    println(userBean.component1())
+    println(userBean.component2())
+
+    val (name, age) = userBean
+    println("name: $name")
+    println("age: $age")
+
+> 至于这种写法`val (name, age) = userBean`，是因为定义了`component1`的运算符
+
+    class Complex{
+        operator fun component1() = "你好呀"
+        operator fun component2() = 2
+        operator fun component3() = 'a'
+    }
+    
+    val complex = Complex()
+    val (a, b, c) = complex
+    println(a + b + c)
+
+使用起来也是很简单的
+
+#### 8. 内部类
+
+- 定义在类内部的类
+- 与类成员有相似的访问控制
+- 默认是静态内部类，非静态用 `inner` 关键字
+- `this@Outter` `this@Inner` 的用法
+- 匿名内部类
+    - 没有定义名字的内部类
+    - 类名编译时生成，类似`Outter$1.class`
+    - 可继承父类，实现多个接口，与`Java`注意区别
+
+举个例子：
+
+    class Outer{
+        var string: String = "outer"
+        class Inner1{
+            var string: String = "inner1"
+            fun sum(first: Int, second: Int) = first + second
+        }
+    
+        inner class Inner2{
+            var string: String = "inner2"
+            fun cha(first: Int, second: Int) = first - second
+            fun getInnerField() = this.string
+            fun getOuterField() = this@Outer.string
+        }
+    }
+    
+    fun main(args: Array<String>) {
+        val inner1 = Outer.Inner1()
+        val inner2 = Outer().Inner2()
+    
+        println(inner1.sum(1, 2))
+    
+        println(inner2.cha(2, 1))
+        println(inner2.getInnerField())
+        println(inner2.getOuterField())
+    }
+
+**匿名内部类:**
+
+    val listener: onClickListener = object : Father(), Mother, onClickListener{
+        override fun sing() {
+            println("mother sing")
+        }
+
+        override fun teach() {
+            println("father teach")
+        }
+
+        override fun onClick() {
+            println("匿名内部类")
+        }
+    }
+    
+> 使用`Object`实现匿名内部类
+
+#### 9. 枚举和密封类
+
+枚举是对象可数，每个状态相当于每个对象，是可以传构造参数的
+
+密封类时子类可数，在`kotlin`大于1.1子类只需要与密封类在同一个文件加，保护子类的位置
+
+    sealed class SealedClassTest{
+        class sum(first: Int, seocnd: Int): SealedClassTest()
+        class cha(first: Int, seocnd: Int): SealedClassTest()
+    
+        object Bean: SealedClassTest()
+    }
+    
+    enum class HttpStatus(val anInt: Int){
+        SUCCESS(0), FAILED(1), LOADING(2)
+    }
+    
+    fun main(args: Array<String>) {
+        val class1 = SealedClassTest.cha(1, 2)
+        println(HttpStatus.SUCCESS)
+    }
+    
+## 高阶函数
