@@ -29,11 +29,15 @@ fun main(args: Array<String>) {
     println("Aa: ${Aa(Bb()::cc)}")
 
     test (String::isNotEmpty)
+    test1 (Bb::ee)
 
     args.filter(String::isNotEmpty)
 }
 
 fun test(predicate: (String) -> Boolean){
+}
+
+fun test1(action: (Bb) -> Boolean){
 
 }
 
@@ -45,8 +49,15 @@ fun Aa(action: (Int) -> Int): Int{
 }
 
 class Bb{
-    fun cc(anInt: Int):Int {
-        println("after action anInt:$anInt")
-        return anInt + 2
-    }
+    var sba = ""
+}
+
+fun Bb.cc(anInt: Int):Int {
+    println("after action anInt:$anInt")
+    return anInt + 2
+}
+
+fun Bb.ee():Boolean {
+    println("after action anInt:")
+    return false
 }
