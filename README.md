@@ -710,3 +710,193 @@
     }
     
 ## 高阶函数
+
+#### 1. 基本概念
+
+- 传入或者返回函数的函数
+- 函数引用 `::println`
+- 带有`Receiver`的引用 `pdfPrinter::println`
+
+有三种显示
+
+    // 1. 包级函数
+    intArray.forEach(::print)
+    
+    // 2. 类.方法
+    intArray.forEach(Int::addOne)
+    fun Int.addOne(): Unit {
+        println("addOne:$this")
+    }
+    
+    // 3. 对象.方法
+    intArray.forEach(AddTwo()::addTwo)
+    class AddTwo {
+        fun addTwo(anInt: Int): Unit {
+            println("addTwo:$anInt")
+        }
+    }
+
+#### 2. 常用的高阶函数
+
+常用的高阶函数还是有很多的，会简单的使用例子即可：
+
+    // 遍历
+    fun forEachTest() {
+        val strings: Array<String> = arrayOf("aa", "ee", "bb", "ll")
+    
+        strings.forEach { println(it) } // 遍历每一个值
+        strings.forEachIndexed { index, s -> println("index:$index,String:$s") } // 遍历 下标和值一一对应
+    
+    }
+    
+    // 重新拷贝一个值
+    fun mapTest() {
+        val strings: Array<String> = arrayOf("aa", "ee", "bb", "ll")
+        var map = strings.map { "$it-test" }
+        map.forEach { print("$it\t") }
+    }
+    
+    // 将集合合体
+    fun flatMapTest() {
+        val lists = listOf(1..10,
+                2..11,
+                3..12)
+    
+        var flatMap = lists.flatMap {
+            it.map {
+                "No.$it"
+            }
+        }
+        flatMap.forEach(::println)
+    }
+    
+    fun reduceTest() {
+        val ints = listOf(2, 3, 4, 5)
+        println(ints.reduce { acc, i ->
+            acc + i
+        })
+    }
+    
+    // 字符串连接
+    fun foldTest(){
+        val ints = listOf(2, 3, 4, 5)
+        println(ints.fold(StringBuffer(), { acc, i -> acc.append("$i,") }))
+        println(ints.joinToString(","))
+    }
+    
+    fun filterTest() {
+        val ints = listOf(1, 2, 3, 4, 5, 6)
+        println(ints.filter { element -> element % 2 == 0 })
+    }
+    
+    // 当值不是奇数就去，遇到偶数就停止了
+    fun takeWhileTest() {
+        val ints = listOf(1, 3, 3, 4, 5, 6)
+        println(ints.takeWhile { it % 2 != 0 })
+    }
+    
+    fun letTest() {
+        findPerson()?.let { (name, age) -> println("name:$name, age:$age") }
+        findPerson()?.apply { println("name:$name, age:$age") }
+        with(findPerson()!!) { println("name:$name, age:$age") }
+    }
+    
+    data class Person(val name: String, val age: Int)
+    
+    fun findPerson(): Person? {
+        return Person("aa", 23)
+    }
+
+#### 3. 复合函数
+
+有点类似数据中的`f(g(x))`
+
+    fun main(args: Array<String>) {
+        val add1 = {int: Int ->
+            println("add1")
+            int + 1}
+        val add2 = {int : Int ->
+            println("add2")
+            int + 2}
+        var add3 = add1 addThen (add2)
+        println(add3(4))
+    }
+    
+    
+    infix fun <P1, P2, R> Function1<P1, P2>.addThen(function: Function1<P2, R>): Function1<P1, R> {
+        return fun(p: P1): R{
+            return function.invoke(this.invoke(p))
+        }
+    }
+    
+#### 4. Currying
+
+简单来说就是多元函数变换成一元函数调用链式，举个简单的例子，这是优化之前：
+
+    fun log(tag: String, out: OutputStream, message: String){
+        out.write("[$tag], $message".toByteArray())
+    }
+    
+优化之后
+
+    fun log(tag: String)
+        = fun(out: OutputStream)
+        = fun(message: String)
+        = out.write("[$tag], $message".toByteArray())
+
+#### 5. 计算文件字符串个数的小例子
+
+首先将字符串转换成字符串数组：
+
+    val map: HashMap<Char, Int> = HashMap()
+    var toCharArray = File("build.gradle").readText().toCharArray()
+    
+通过分组的方式，统计每个字符串的个数，并打印：
+
+    toCharArray.groupBy { it }.map { it.key to  it.value.size }.forEach { println(it) }
+    
+## `kotlin`和`java`的混合开发
+
+#### 1. 基本的交互操作
+
+**属性读写**
+
+- `Kotlin`自动识别 `Java Getter/Setter`
+- `Java`操作`Kotlin`属性通过`Getter/Setter`
+
+**空安全类型**
+
+- `Kotlin`空安全类型的原理
+- 平台类型`Platform Type`
+- `Java`可以通过`@Nullable、@NotNull`
+
+**几类函数的调用**
+
+- 包级函数：静态方法
+- 扩展方法：带`Receiver`的静态方法
+- 运算符重载：带`Receiver`的对应名称的静态方法
+
+**几个常用的注解**
+
+- `@JvmField`：将属性编译为`Java变量`
+- `@JvmStatic`：将对象的方法编译成功`Java`静态方法
+- `@JvmOverloads`：默认参数生成重载方法
+- `@JvmName`：制定`Kotlin`文件编译后的类名
+
+**NoArg 和 AllOpen**
+
+- `NoArg`为被标注的类生成无参构造
+- `AllOpen`为被标注的类去掉`final`，允许被继承
+
+**正则表达式**
+
+- 用`Raw`字符串定义正则表达式
+- `Java`的`Pattern`
+- `Kotlin`的`Regex`
+
+举个例子：
+
+    val source = "Hello This my phone number: 010-12345678."
+    val pattern = """.*(\d{3}-\d{8}).*"""
+
+    Regex(pattern).findAll(source).toList().flatMap(MatchResult::groupValues).forEach(::print)
