@@ -40,7 +40,7 @@
     val anInt: Int = 5
     val aLong: Long = anInt.toLong()
     
-必须得通过`.to类型`的方式进行数据的转换
+必须得通过`.to类型` 的方式进行数据的转换
 
 **字符串**
 
